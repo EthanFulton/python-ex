@@ -1,9 +1,12 @@
 from flask import Flask, request, session, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 import json, os
 
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # replace later
+app.secret_key = os.getenv("SECRET_KEY")
 
 # Ensure data folder exists
 DATA_DIR = "data"

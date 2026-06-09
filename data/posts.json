@@ -2,5 +2,9 @@
   {
     "user": "admin",
     "message": "hello world this is the 1st post"
+  },
+  {
+    "user": "intern",
+    "message": "hi admin this is the 2nd post"
   }
 ]

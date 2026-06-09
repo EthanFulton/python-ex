@@ -1,5 +1,8 @@
 {
   "admin": {
     "password_hash": "scrypt:32768:8:1$QUJYsTPrbKSePHsH$795eb77002f4c414c9575f5fbc2d43b70ca802282a31275625ad8be19db8322ef6faf458c89a12d9d89148d89cf41c2685269330ba48b7d1a8e69e237034ff11"
+  },
+  "intern": {
+    "password_hash": "scrypt:32768:8:1$rV63jmblbpzHo49h$2ce5f2a3e756851ae8ef40b9c281ff72f55739d73b6fd49b893c7a42cefa86899ffe165e86cc637bddde725768d48b45a616c78b7d098e06fad59e48f719e2cb"
   }
 }
