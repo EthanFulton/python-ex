@@ -4,5 +4,16 @@
   },
   "intern": {
     "password_hash": "scrypt:32768:8:1$rV63jmblbpzHo49h$2ce5f2a3e756851ae8ef40b9c281ff72f55739d73b6fd49b893c7a42cefa86899ffe165e86cc637bddde725768d48b45a616c78b7d098e06fad59e48f719e2cb"
+  },
+  "ethan": {
+    "password_hash": "scrypt:32768:8:1$7QQgZijgzVezx7El$15cac2f9e959b41a3129098444ddc4dca38124c2ee26e377bf025e93e47b01eb0671c95e9234af2018ff20f2fd87e8fe1135720e52bad8a43042e94a6870515f"
+  },
+  "test": {
+    "password_hash": "scrypt:32768:8:1$LiUta8Zd4FoBlzI8$5b067d842f3b98f8effebbb3a28208ea26a13f23be974d72abc9135eb165dcbc5013a0158b2b15b0c093330d8ccf4fdbaee66a190e1ae53a41d202830e479c54",
+    "otp_secret": "BYNEHRVSKOHIHCS4SJPCEDEXKF3ESE4W"
+  },
+  "test1": {
+    "password_hash": "scrypt:32768:8:1$kQzMJR5resL2wDxr$d901d56baa82cf9e83a5426150eebfef15d84080cbf16905832e03e43379e640ddd9b02dbe3cde00b7dfe5638d08e9619f2638ac8d0962f00c27a1833ce39eb4",
+    "otp_secret": "QXPHQIKVSS57PXJZRNHUUSRIITFPNSQN"
   }
 }
