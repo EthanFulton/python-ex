@@ -1,11 +1,18 @@
+# personal note: use
+#   source /projects/flask-example/.venv/bin/activate
+# for switching to venv to pip install modules in terminal
+
 from flask import Flask, request, session, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+import pyotp
+import qrcode
 import json, os
 
 load_dotenv()
 
 app = Flask(__name__)
+# get secret key to use for hashing
 app.secret_key = os.getenv("SECRET_KEY")
 
 # Ensure data folder exists
@@ -54,18 +61,86 @@ def register():
         if username in users:
             return "User already exists"
 
+        # gen secret
+        import pyotp
+        secret = pyotp.random_base32()
+
         users[username] = {
-            "password_hash": generate_password_hash(password)
+            "password_hash": generate_password_hash(password),
+            "otp_secret": secret
         }
         save_json(USERS_FILE, users)
-        return "Registered! Go to /login"
+
+        # creating qr code
+        import qrcode
+        import base64
+        from io import BytesIO
+
+        totp = pyotp.TOTP(secret)
+        uri = totp.provisioning_uri(name=username, issuer_name="SimpleForumApp")
+
+        img = qrcode.make(uri)
+        buffer = BytesIO()
+        img.save(buffer, format="PNG")
+        qr_base64 = base64.b64encode(buffer.getvalue()).decode()
+
+        # returning qr code to user
+        return f'''
+        <h3>Registration Successful</h3>
+        <p>Scan this QR code with Google Authenticator or Microsoft Authenticator:</p>
+
+        <img src="data:image/png;base64,{qr_base64}" />
+        ``
+
+        <p>If you cannot scan, manually enter this code:</p>
+        <b>{secret}</b>
+
+        <br><br>
+        /loginGo to Login</a>
+        '''
 
     return '''
+    <h2>Register</h2>
+
     <form method="POST">
-        Username: <input name="username"><br>
-        Password: <input name="password" type="password"><br>
+        Username: <input name="username"><br><br>
+
+        Password: <input id="password" name="password" type="password" onkeyup="checkStrength()"><br>
+        <div id="strength" style="font-weight:bold;"></div><br>
+
         <button>Register</button>
     </form>
+
+    <script>
+    function checkStrength() {
+        let password = document.getElementById("password").value;
+        let strengthText = document.getElementById("strength");
+
+        let strength = 0;
+
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+        if (password.length === 0) {
+            strengthText.innerHTML = "";
+            return;
+        }
+
+        if (strength <= 2) {
+            strengthText.innerHTML = "Weak - A strong password is atleast 8 characters, includes lowercase (a-z), uppercase (A-Z), numbers (0-9), and characters (!?@#...)";
+            strengthText.style.color = "red";
+        } else if (strength == 3 || strength == 4) {
+            strengthText.innerHTML = "Medium - A strong password is atleast 8 characters, includes lowercase (a-z), uppercase (A-Z), numbers (0-9), and characters (!?@#...)";
+            strengthText.style.color = "orange";
+        } else {
+            strengthText.innerHTML = "Strong - Great!";
+            strengthText.style.color = "green";
+        }
+    }
+    </script>
     '''
 
 @app.route('/login', methods=['GET', 'POST'])
