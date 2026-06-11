@@ -2,3 +2,5 @@
 .odo/env
 .odo/odo-file-index.json
 .env
+data/posts.json
+data/users.json

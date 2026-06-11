@@ -96,8 +96,10 @@ def register():
         <b>{secret}</b>
 
         <br><br>
-        /loginGo to Login</a>
+        <button style="padding:10px 20px;">Go to Login</button>
+        </a>
         '''
+
 
     return '''
     <h2>Register</h2>
@@ -156,14 +158,47 @@ def login():
         if not check_password_hash(users[username]["password_hash"], password):
             return "Invalid password"
 
-        session['user'] = username
-        return redirect('/thread')
+        # store temp user for 2fa
+        session['temp_user'] = username
+        return redirect('/verify')
 
     return '''
     <form method="POST">
         Username: <input name="username"><br>
         Password: <input name="password" type="password"><br>
         <button>Login</button>
+    </form>
+    '''
+
+@app.route('/verify', methods=['GET', 'POST'])
+def verify():
+    # keep someone not logged in from going straight to /verify page
+    if 'temp_user' not in session:
+        return redirect('/login')
+
+    users = load_json(USERS_FILE, {})
+    username = session['temp_user']
+    secret = users[username]["otp_secret"]
+
+    import pyotp
+    totp = pyotp.TOTP(secret)
+
+    if request.method == 'POST':
+        code = request.form['code']
+
+        if totp.verify(code, valid_window=1):
+            # login succeeded
+            session.pop('temp_user')
+            session['user'] = username
+            return redirect('/thread')
+        else: # login failed
+            return "Invalid code"
+
+    return '''
+    <h3>Enter 2FA Code</h3>
+    <form method="POST">
+        Code: <input name="code"><br>
+        <button>Verify</button>
     </form>
     '''
 
