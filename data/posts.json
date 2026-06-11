@@ -1,14 +1,6 @@
 [
   {
-    "user": "admin",
-    "message": "hello world this is the 1st post"
-  },
-  {
-    "user": "intern",
-    "message": "hi admin this is the 2nd post"
-  },
-  {
     "user": "ethan",
-    "message": "im posting"
+    "message": "hello i made it past login"
   }
 ]

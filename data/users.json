@@ -1,19 +1,22 @@
 {
-  "admin": {
-    "password_hash": "scrypt:32768:8:1$QUJYsTPrbKSePHsH$795eb77002f4c414c9575f5fbc2d43b70ca802282a31275625ad8be19db8322ef6faf458c89a12d9d89148d89cf41c2685269330ba48b7d1a8e69e237034ff11"
-  },
-  "intern": {
-    "password_hash": "scrypt:32768:8:1$rV63jmblbpzHo49h$2ce5f2a3e756851ae8ef40b9c281ff72f55739d73b6fd49b893c7a42cefa86899ffe165e86cc637bddde725768d48b45a616c78b7d098e06fad59e48f719e2cb"
-  },
   "ethan": {
-    "password_hash": "scrypt:32768:8:1$7QQgZijgzVezx7El$15cac2f9e959b41a3129098444ddc4dca38124c2ee26e377bf025e93e47b01eb0671c95e9234af2018ff20f2fd87e8fe1135720e52bad8a43042e94a6870515f"
+    "password_hash": "scrypt:32768:8:1$wH0pQbfqaRFQz6Gk$c67453be6f2f0eccebf28d4f264c860d1d7457860a856cbb35af67b3e8f0236aa9039364f074f981a6362c748cda954fd5ef0e5c3b7d27cd0c4f9d64b42bf074",
+    "otp_secret": "5O75HRC5XXKAMILSQZHXGZD5VSPOHQSX"
   },
   "test": {
-    "password_hash": "scrypt:32768:8:1$LiUta8Zd4FoBlzI8$5b067d842f3b98f8effebbb3a28208ea26a13f23be974d72abc9135eb165dcbc5013a0158b2b15b0c093330d8ccf4fdbaee66a190e1ae53a41d202830e479c54",
-    "otp_secret": "BYNEHRVSKOHIHCS4SJPCEDEXKF3ESE4W"
+    "password_hash": "scrypt:32768:8:1$Jpl2C5AyDprS3Uo4$79764314ec52f94ac2126788cb9eeeff995f6cf4770ca8be890bead0e89b13376d4c764789e0d0fb93cee4f575c3e58c721bbbb7b91d6be065a6f6984212a3a9",
+    "otp_secret": "GM2UND465PEUMDRNNKT6EBGEMGLOKSDH"
   },
-  "test1": {
-    "password_hash": "scrypt:32768:8:1$kQzMJR5resL2wDxr$d901d56baa82cf9e83a5426150eebfef15d84080cbf16905832e03e43379e640ddd9b02dbe3cde00b7dfe5638d08e9619f2638ac8d0962f00c27a1833ce39eb4",
-    "otp_secret": "QXPHQIKVSS57PXJZRNHUUSRIITFPNSQN"
+  "hi": {
+    "password_hash": "scrypt:32768:8:1$EKcZ2tmQRLQYb8Lh$8ac76457f4ca88ef2145fd2ef58a154a010e6dd953d6214cd009e66ec40eb1bac44983df53f815278ebf6b80506e2c202c20bb62303e6ae19e2393c7f5180895",
+    "otp_secret": "R3YMX64Q5IL7FSWOXXCJYTCRQ5BDTK3J"
+  },
+  "ok": {
+    "password_hash": "scrypt:32768:8:1$GQB6wBN7r96fBkn3$a19531970629b5ca338f08f1c9e624e175bd6d254f5778967a53235a83b354cc945a58a5615313e7011145aa7e5be23a54fadb9d7fd8fd55d776d161a75597ba",
+    "otp_secret": "XRQNVFOFI7RHWT76LULKWXQMDJCXRHHZ"
+  },
+  "test123": {
+    "password_hash": "scrypt:32768:8:1$JUTbQwNSaUjGFDRy$008dfda4d9af97e91766b65ed2d0d88253687f0929751a5f037d7b2544faf44b63b17d94849b46de834cc16260eeea68cb690d585fb0bab2faae0b8923bb7af6",
+    "otp_secret": "YUYM2QZMYOFAEWM76DJMMPI5CXYZV7NN"
   }
 }

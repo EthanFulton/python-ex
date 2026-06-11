@@ -5,15 +5,14 @@
 from flask import Flask, request, session, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
-import pyotp
-import qrcode
-import json, os
+from io import BytesIO
+import json, os, pyotp, qrcode, base64
 
 load_dotenv()
 
 app = Flask(__name__)
 # get secret key to use for hashing
-app.secret_key = os.getenv("SECRET_KEY")
+app.secret_key = os.getenv("SECRET-KEY")
 
 # Ensure data folder exists
 DATA_DIR = "data"
@@ -62,7 +61,6 @@ def register():
             return "User already exists"
 
         # gen secret
-        import pyotp
         secret = pyotp.random_base32()
 
         users[username] = {
@@ -72,9 +70,6 @@ def register():
         save_json(USERS_FILE, users)
 
         # creating qr code
-        import qrcode
-        import base64
-        from io import BytesIO
 
         totp = pyotp.TOTP(secret)
         uri = totp.provisioning_uri(name=username, issuer_name="SimpleForumApp")
@@ -96,7 +91,8 @@ def register():
         <b>{secret}</b>
 
         <br><br>
-        <button style="padding:10px 20px;">Go to Login</button>
+        <a href="/login">
+        <button style="padding:10px 20px; margin:5px;">Go to Login</button>
         </a>
         '''
 
@@ -192,7 +188,13 @@ def verify():
             session['user'] = username
             return redirect('/thread')
         else: # login failed
-            return "Invalid code"
+            return '''
+            <h3>Invalid code</h3>
+            <br><br>
+            <a href="/login">
+            <button style="padding:10px 20px; margin:5px;">Retry Login</button>
+            </a>
+            '''
 
     return '''
     <h3>Enter 2FA Code</h3>

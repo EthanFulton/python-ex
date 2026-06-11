@@ -1,0 +1,28 @@
+# Archived code
+archive/
+archive/*
+
+# git files
+.git*
+
+# pycharm files
+.idea
+
+# Markdown files
+*.md
+
+# Example files
+example_*
+
+# Log files
+*.log
+
+# Test files
+test.json
+test*
+
+# Ignore openshift configs
+openshift-configs/
+
+# Ignore the application endpoints. This is configured as config map in openshift.
+application-endpoints.yaml
